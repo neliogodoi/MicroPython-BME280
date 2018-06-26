@@ -40,7 +40,7 @@ class BME280:
             self.dig_H6 -= 256
         self._write8(0xF2, self.humi_mode)
         sleep(0.002)
-        self._write8(0xF4, 0x24)
+        self._write8(0xF4, 0x24) # normal mode operation
         sleep(0.002)
         self._write8(0xF5, self.iir << 2)
 
@@ -55,10 +55,13 @@ class BME280:
         return t[0]+t[1]*256
 
     def _write8(self, reg, dat):
-        i2c.write(self.address, bytearray([reg, dat]))
+        self._i2c.write(self.address, bytearray([reg, dat]))
 
     def _short(self, dat):
-        [dat-65536, dat][dat > 32767] #if-else
+        if dat > 32767:
+            return dat - 65536
+        else:
+            return dat
 
     def read_raw_data(self):
         self._write8(0xF4, (self.pres_mode << 5 | self.temp_mode << 2 | 1))
@@ -132,5 +135,5 @@ class BME280:
         return (pi, pd)
 
     def altitude(self, pressure_sea_level=1013.25):
-        pi, pd = self.pressure_precision
+        pi, pd = self.pressure_precision()
         return 44330*(1-((float(pi+pd)/100)/pressure_sea_level)**(1/5.255))

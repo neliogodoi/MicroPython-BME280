@@ -62,7 +62,8 @@ class BME280:
         # Configure oversampling of humidity sensor
         self._write8(0xF2, self.humi_mode)
         sleep(0.002)
-        self._write8(0xF4, 0x24)
+        self._write8(0xF4, 0x24) # 0x24 normal mode operation 
+                                 # 0x00 sleep  mode operation
         # Sleep mode with temperature and pressure with 1x oversampling
         sleep(0.002)
         # Configure low pass IIR filter
@@ -88,10 +89,10 @@ class BME280:
         """
         Write one byte in sensor
         """
-        i2c.write(self.address, bytearray([reg, dat]))
+        self._i2c.write(self.address, bytearray([reg, dat]))
 
     def _short(self, dat):
-        [dat-65536, dat][dat > 32767] #if-else
+        return [dat-65536, dat][dat > 32767] #if-else
 
     def read_raw_data(self):
         """
@@ -187,5 +188,5 @@ class BME280:
         Returns estimated altitude based on International Barometric Formula
         """
         # The International Barometric Formula using hPa.
-        pi, pd = self.pressure_precision
+        pi, pd = self.pressure_precision()
         return 44330*(1-((float(pi+pd)/100)/pressure_sea_level)**(1/5.255))
