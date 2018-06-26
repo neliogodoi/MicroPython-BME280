@@ -12,7 +12,7 @@ or file <i>'BST-BME280_DS001-11-844833.pdf'</i><br>
 
 <b>Digital interface: </b> &nbsp; I2C (up to 3.4 MHz) and SPI (3 and 4 wire, up to 10 MHz)<br>
 
-<b>Supply voltage: </b> &nbsp; VDD main supply voltage range: 1.71 V to 3.6 V<br>
+<b>Supply voltage:</b>&nbsp; VDD main supply voltage range: 1.71 V to 3.6 V<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;VDD IO interface voltage range: 1.20 V to 3.6 V
 
 <b>Current consumption:</b> 1.8 μA @ 1 Hz humidity and temperature
@@ -52,4 +52,12 @@ or file <i>'BST-BME280_DS001-11-844833.pdf'</i><br>
 ```python
 
 ```
+## <b>Driver Benchmark for Memory Consumed*:</b>
+*To import all dependencies and construct the object.
 
+|       |ESP8266|ESP32|LoPy|BBC Micro:bit|
+|------:|:-----:|:---:|:--:|:-----------:|
+|Memory (Bytes)|-|-|-|3568|
+|Memory (%)|-|-|-|38|
+
+The Test in BBC Micro:bit :
