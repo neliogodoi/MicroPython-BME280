@@ -46,7 +46,13 @@ or file <i>'BST-BME280_DS001-11-844833.pdf'</i><br>
 ```
 #### LoPy
 ```python
+import bme280
+from machine import I2C, Pin
 
+i2c = I2C(0, I2C.MASTER, baudrate=100000)
+sensor = bme280.BME280(i2c=i2c)
+
+sensor.formated_values
 ```
 #### BBC Micro:bit
 ```python
