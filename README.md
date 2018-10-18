@@ -36,13 +36,24 @@ or file <i>'BST-BME280_DS001-11-844833.pdf'</i><br>
 <b>'bme280_microbit_lowmem.py':</b> &nbsp;  Version <i>Low Memory</i> of driver for BBC Micro:bit devices - <b>No Documenteded</b><br>
 
 ## <b>Tests:</b>
-#### ESP8266
 ```python
+import bme280
+from machine import I2C, Pin
 
+i2c = I2C(sda=Pin(4), scl=Pin(5))
+sensor = bme280.BME280(i2c=i2c)
+
+sensor.formated_values
 ```
 #### ESP32
 ```python
+import bme280
+from machine import I2C, Pin
 
+i2c = I2C(sda=Pin(21), scl=Pin(22))
+sensor = bme280.BME280(i2c=i2c)
+
+sensor.formated_values
 ```
 #### LoPy
 ```python
