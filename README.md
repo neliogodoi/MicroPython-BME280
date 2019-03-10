@@ -78,7 +78,8 @@ temp, pres, humi = bme.values()
 
 |       |ESP8266|ESP32|LoPy|BBC Micro:bit|
 |------:|:-----:|:---:|:--:|:-----------:|
-|Memory (Bytes)|-|-|-|3568|
+|Device Memory (Kb)|64|520|200|16|
+|Memory Uses (Kb)|-|-|-|3.48|
 |Memory (%)|-|-|-|38|
 
 The Test in BBC Micro:bit :
