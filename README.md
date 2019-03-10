@@ -68,7 +68,10 @@ sensor.formated_values
 ```
 #### BBC Micro:bit
 ```python
-
+from microbit import i2c
+import bme280
+bme = bme280.BME280(i2c)
+temp, pres, humi = bme.values()
 ```
 ## <b>Driver Benchmark for Memory Consumed*:</b>
 *To import all dependencies and construct the object.
